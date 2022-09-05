@@ -1,0 +1,24 @@
+import Image from "next/image";
+import type { AnimeCardType } from "../../interfaces";
+
+function AnimeCard(props: AnimeCardType) {
+  const {
+    animeId,
+    episodeId,
+    animeTitle,
+    episodeNum,
+    subOrDub,
+    animeImg,
+    episodeUrl,
+  } = props;
+  return (
+    <>
+      <div>
+        <Image src={animeImg} alt={animeTitle} width="200" height="250" />
+        <span>{animeTitle}</span>
+      </div>
+    </>
+  );
+}
+
+export default AnimeCard;
