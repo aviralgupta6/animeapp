@@ -8,5 +8,5 @@ const animeCard: AnimeCardType[] = [];
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
   // Get data from your database
-  res.status(200).json(animeCard);
+  res.status(404).json(animeCard);
 }

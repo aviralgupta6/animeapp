@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { AnimeCardType } from "../../interfaces";
 
 function AnimeCard(props: AnimeCardType) {
@@ -13,7 +14,7 @@ function AnimeCard(props: AnimeCardType) {
   return (
     <>
       <div>
-        <img src={animeImg} />
+        <Image src={animeImg} alt={animeTitle} width="200" height="250" />
         <span>{animeTitle}</span>
       </div>
     </>
