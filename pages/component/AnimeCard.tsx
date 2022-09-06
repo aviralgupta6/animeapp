@@ -12,12 +12,12 @@ function AnimeCard(props: AnimeCardType) {
     episodeUrl,
   } = props;
   return (
-    <>
-      <div>
+    <div>
+      <a href={`/anime/${animeId}`}>
         <Image src={animeImg} alt={animeTitle} width="200" height="250" />
         <span>{animeTitle}</span>
-      </div>
-    </>
+      </a>
+    </div>
   );
 }
 
