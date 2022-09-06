@@ -7,6 +7,7 @@ import AnimeCard from "../component/AnimeCard";
 // import fetcher from "../api/fetcher";
 import { baseUrl } from "../../constants/constant";
 import useFetcher from "../api/fetcher";
+import Head from "next/head";
 
 const urls = `${baseUrl}/recent-release`;
 
@@ -17,6 +18,9 @@ const Home: NextPage = () => {
 
   return (
     <Fragment>
+      <Head>
+        <title>Recent Release</title>
+      </Head>
       <div>
         {data ? (
           data.map((animeData) => (

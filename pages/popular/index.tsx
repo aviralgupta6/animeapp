@@ -7,6 +7,7 @@ import { Fragment } from "react";
 import AnimeCard from "../component/AnimeCard";
 // import fetcher from "../api/fetcher";
 import useFetcher from "../api/fetcher";
+import Head from "next/head";
 const urls = `${baseUrl}/popular`;
 
 const popular = (url: string) => fetch(urls).then((res) => res.json());
@@ -16,6 +17,9 @@ const Popular: NextPage = () => {
 
   return (
     <Fragment>
+      <Head>
+        <title>Popular</title>
+      </Head>
       <div>
         {data ? (
           data.map((animeData) => (
