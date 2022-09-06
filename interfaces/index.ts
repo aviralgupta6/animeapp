@@ -7,3 +7,16 @@ export type AnimeCardType = {
   animeImg: string;
   episodeUrl: string;
 };
+
+export type AnimeDetailsType = {
+  animeTitle?: string;
+  type: string;
+  releasedDate: string;
+  status: string;
+  genres: number[];
+  otherNames: string;
+  synopsis: string;
+  animeImg?: string;
+  episodesAvaliable: string;
+  episodesList: number[];
+};
