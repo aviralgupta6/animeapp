@@ -4,7 +4,7 @@ import { Fragment } from "react";
 const Custom404: NextPage = () => {
   return (
     <Fragment>
-      <div className="text-3xl font-bold text-white">404</div>
+      <div className="text-3xl font-bold text-green">404</div>
     </Fragment>
   );
 };

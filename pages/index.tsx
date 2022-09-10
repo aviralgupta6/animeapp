@@ -8,7 +8,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Anime App</title>
       </Head>
-      <div className="text-3xl font-bold text-white">Welcome</div>
+      <div className="text-3xl font-bold text-red">Welcome</div>
     </Fragment>
   );
 };

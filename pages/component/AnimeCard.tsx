@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Link from "next/link";
 
 export default function AnimeCard(props: AnimeCardType) {
   const {
@@ -19,41 +20,39 @@ export default function AnimeCard(props: AnimeCardType) {
   } = props;
   return (
     <Card sx={{ width: 220, height: 400, margin: 0.5 }}>
-      <CardActionArea href={`/anime/${animeId}`}>
-        <CardMedia
-          component="img"
-          height="90"
-          image={animeImg}
-          alt={animeTitle}
-          sx={{
-            objectFit: "cover",
-            height: "330px",
-          }}
-        />
-        <CardContent
-          sx={{
-            height: "70px",
-          }}
-        >
-          <Typography
-            variant="body2"
-            color="text.secondary"
+      <Link href={`/anime/${animeId}`}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="90"
+            image={animeImg}
+            alt={animeTitle}
             sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitLineClamp: "2",
-              WebkitBoxOrient: "vertical",
+              objectFit: "cover",
+              height: "330px",
+            }}
+          />
+          <CardContent
+            sx={{
+              height: "70px",
             }}
           >
-            {animeTitle}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {/* Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica */}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "2",
+                WebkitBoxOrient: "vertical",
+              }}
+            >
+              {animeTitle}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
     </Card>
   );
 }
