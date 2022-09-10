@@ -7,3 +7,23 @@ export type AnimeCardType = {
   animeImg: string;
   episodeUrl: string;
 };
+
+export type EpisodeDetailsType = {
+  episodeId?: string;
+  episodeNum?: number | string;
+  episodeUrl?: string;
+};
+
+export type AnimeDetailsType = {
+  [key: string]: any;
+  animeId?: string;
+  type?: string;
+  animeTitle?: string;
+  animeImg: string;
+  status?: string;
+  genres?: string[];
+  otherNames?: string[] | string;
+  synopsis?: string;
+  totalEpisodes?: number | string;
+  episodesList: EpisodeDetailsType[];
+};

@@ -2,32 +2,84 @@ import type { NextPage } from "next";
 import type { AnimeCardType } from "../../interfaces";
 
 import useSwr from "swr";
+import { baseUrl } from "../../constants/constant";
 import { Fragment } from "react";
 import AnimeCard from "../component/AnimeCard";
-// import fetcher from "../api/fetcher";
-import { baseUrl } from "../../constants/constant";
-import useFetcher from "../api/fetcher";
+import Head from "next/head";
+const url = `${baseUrl}/popular`;
+
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { Card, Pagination, Skeleton } from "@mui/material";
 
 const urls = `${baseUrl}/recent-release`;
 
 const recentRelease = (url: string) => fetch(urls).then((res) => res.json());
 
-const Home: NextPage = () => {
-  const { data, error } = useFetcher(recentRelease);
+const RecentRelease: NextPage = () => {
+  const [pageIndex, setPageIndex] = React.useState(1);
+  const { data, error } = useSwr<AnimeCardType[]>(
+    `/api/recentRelease?page=${pageIndex}`,
+    () => recentRelease(url + "?page=" + pageIndex)
+  );
+  const isLoading = !error && !data;
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPageIndex(value);
+  };
 
   return (
     <Fragment>
+      <Head>
+        <title>Popular</title>
+      </Head>
       <div>
-        {data ? (
-          data.map((animeData) => (
-            <AnimeCard {...animeData} key={animeData.animeId} />
-          ))
+        {!isLoading && data ? (
+          <Box>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {data?.map((animeData) => (
+                <AnimeCard {...animeData} key={animeData.animeId} />
+              ))}
+            </Grid>
+            <Pagination count={10} page={pageIndex} onChange={handleChange} />
+          </Box>
         ) : (
-          <></>
+          <>
+            <Box>
+              <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
+                columns={{ xs: 4, sm: 8, md: 12 }}
+              >
+                {[...Array(20)].map((item, i) => (
+                  <Card sx={{ margin: 0.5 }} key={i}>
+                    <Skeleton
+                      sx={{ height: 330, width: 220 }}
+                      animation="wave"
+                      variant="rectangular"
+                    />
+                    <Skeleton
+                      sx={{ height: 70, width: 220 }}
+                      animation="wave"
+                      variant="rectangular"
+                    />
+                  </Card>
+                ))}
+              </Grid>
+              <Pagination count={10} page={pageIndex} onChange={handleChange} />
+            </Box>
+          </>
         )}
       </div>
     </Fragment>
   );
 };
 
-export default Home;
+export default RecentRelease;
